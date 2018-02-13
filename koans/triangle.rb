@@ -13,23 +13,30 @@
 # and
 #   about_triangle_project_2.rb
 #
+
+
+
+
+
 def triangle(a, b, c)
-  # WRITE THIS CODE
+  # write this code
 
+  arr = [a, b, c].sort
 
-        raise TriangleError, "Sides must by numbers greater than zero" if (a <= 0) || (b <= 0) || (c <= 0)
-        raise TriangleError, "No two sides can add to be less than or equal to the other side" if (a+b <= c) || (a+c <= b) || (b+c <= a)
+  raise TriangleError, 'the length is zero' if arr.include?(0)
+  raise TriangleError, 'negative argument' if arr.min < 0
 
-
-    if ((a == b) && (a == c) && (b == c))
-      return :equilateral
-    elsif ((a == b) || (a == c) || (b == c))
-      return :isosceles
+  # The uniq method removes all duplicate elements and
+  # retains all unique elements in the array.
+  # size method used on arrays in ruby returns number of elements in the array
+  case arr.uniq.size
+    when 1
+      :equilateral
+    when 2
+      :isosceles
     else
-      return :scalene
-    end
-
-
+      :scalene
+  end
 end
 
 # Error class used in part 2.  No need to change this code.
